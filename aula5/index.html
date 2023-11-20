@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Aula 5 - Desbravando Objetos e Construindo uma Tabela de Classificação</title>
+    <!--<script src="./assets/script.js"></script>-->
+</head>
+
+<body>
+    <!--Proposta da aula-->
+    <!--
+    <h1>Classificação Alura</h1>
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Vitórias</th>
+                <th>Empates</th>
+                <th>Derrotas</th>
+                <th>Pontos</th>
+                <th colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaJogadores">
+        </tbody>
+    </table>
+
+    <!-- Desafios - Rafaella e Paulo (Para esse desafio, a execução do JavaScript foi colocada dentro da tag <style>, porém todo seu funcionando também se encontra no arquivo "script.js")-->
+    <div class="container">
+        <div class="conteudo">
+            <h1>Simulação da Fase de Grupos do ATP Finals 2023</h1>
+            <h3>Seja bem-vindo ao simulador de pontuação para a fase de grupos do torneio ATP Finals 2023. Para essa
+                fase, temos dois grupos nomeados "Verde" e "Vermelho", com 04 competidores cada, sendo que cada um deve
+                disputar um máximo de 03 partidas contra cada competidor de seu respectivo grupo. Cada vitória nessa
+                fase acrescenta 200 pontos ao ranking do competidor, e ao final, os dois competidores com maior número
+                de vitórias passam para a semifinal</h3>
+        </div>
+        <div class="tabelas">
+            <div>
+                <h2>Classificação: Grupo Verde</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Competidor</th>
+                            <th>Jogos Disputados</th>
+                            <th>Pontos</th>
+                            <th>Jogos Ganhos</th>
+                            <th>Jogos Perdidos</th>
+                            <th>Vitória</th>
+                            <th>Derrota</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaGrupoVerde">
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div>
+                    <h2>Classificação: Grupo Vermelho</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Competidor</th>
+                                <th>Jogos Disputados</th>
+                                <th>Pontos</th>
+                                <th>Jogos Ganhos</th>
+                                <th>Jogos Perdidos</th>
+                                <th>Vitória</th>
+                                <th>Derrota</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaGrupoVermelho">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    let listaGrupoVerde = [
+        { nome: 'Jannik Sinner', jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Novak Djokovic", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Holger Rune", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Hubert Hurkacz", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+    ];
+
+    let listaGrupoVermelho = [
+        { nome: 'Carlos Alcaraz', jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Daniil Medvedev", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Alexander Zverev", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+        { nome: "Andrey Rublev", jogos: 0, pontos: 0, vitoria: 0, derrota: 0 },
+    ];
+
+    function adicionarVitoriaGrupo(jogador) {
+        if (jogador.jogos < 3) {
+            jogador.jogos++;
+            jogador.vitoria++;
+            jogador.pontos = jogador.pontos + 200;
+            exibirElementoGrupo();
+        } else {
+            alert("Número máximo de jogos atingidos para esse jogador na fase de grupos")
+        }
+    }
+
+    function adicionarDerrotaGrupo(jogador) {
+        if (jogador.jogos < 3) {
+            jogador.jogos++;
+            jogador.derrota++;
+            exibirElementoGrupo();
+        } else {
+            alert("Número máximo de jogos atingidos para esse jogador na fase de grupos")
+        }
+    }
+
+    /*Função: Exibir na tela (primeira vez)*/
+    function exibirElementoGrupo() {
+        let elementoGrupoVerde = document.getElementById("tabelaGrupoVerde");
+        let elementoGrupoVermelho = document.getElementById("tabelaGrupoVermelho");
+        let agruparGrupoVerde = "";
+        let agruparGrupoVermelho = "";
+        for (let i = 0; i < listaGrupoVerde.length; i++) {
+            agruparGrupoVerde += `<tr>
+                <td>${listaGrupoVerde[i].nome}</td>
+                <td>${listaGrupoVerde[i].jogos}</td>
+                <td>${listaGrupoVerde[i].pontos}</td>
+                <td>${listaGrupoVerde[i].vitoria}</td>
+                <td>${listaGrupoVerde[i].derrota}</td>
+                <td><button id onClick="adicionarVitoriaGrupo(listaGrupoVerde[${i}])">Adicionar</button></td>
+                <td><button id onClick="adicionarDerrotaGrupo(listaGrupoVerde[${i}])">Adicionar</button></td>
+                </tr>`;
+            agruparGrupoVermelho += `<tr>
+                <td>${listaGrupoVermelho[i].nome}</td>
+                <td>${listaGrupoVermelho[i].jogos}</td>
+                <td>${listaGrupoVermelho[i].pontos}</td>
+                <td>${listaGrupoVermelho[i].vitoria}</td>
+                <td>${listaGrupoVermelho[i].derrota}</td>
+                <td><button id onClick="adicionarVitoriaGrupo(listaGrupoVermelho[${i}])">Adicionar</button></td>
+                <td><button id onClick="adicionarDerrotaGrupo(listaGrupoVermelho[${i}])">Adicionar</button></td>
+                </tr>`;
+        }
+        elementoGrupoVerde.innerHTML = agruparGrupoVerde;
+        elementoGrupoVermelho.innerHTML = agruparGrupoVermelho;
+    }
+
+    exibirElementoGrupo();
+</script>
+
+</html>
