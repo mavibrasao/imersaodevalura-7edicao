@@ -1,0 +1,77 @@
+body {
+  font-family: "Roboto Mono", monospace;
+  min-height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1601646761285-65bfa67cd7a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+h1,
+h2,
+h3 {
+  color: #ffffff;
+  text-align: justify;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.tabelas {
+  display: flex;
+  gap: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #122036;
+  color: #FFFFFF;
+  padding: 1rem;
+}
+
+th:first-child {
+  border-top-left-radius: 5px;
+}
+
+th:last-child {
+  border-top-right-radius: 5px;
+}
+
+td {
+  padding: .5rem;
+  text-align: center;
+}
+
+tr:nth-child(odd) {
+  background-color: #FFFFFF;
+  color: #858585;
+}
+
+tr:nth-child(even) {
+  background-color: #F6F6F6;
+  color: #545454;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
+}
+
+button {
+  background-color: #122036;
+  border: none;
+  border-radius: 2px;
+  color: #f6f6f6;
+  padding: .5rem;
+}
